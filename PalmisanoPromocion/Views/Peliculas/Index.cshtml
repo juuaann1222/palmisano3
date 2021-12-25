@@ -1,0 +1,31 @@
+﻿@model IEnumerable<PalmisanoPromocion.Models.Pelicula>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>EN CARTELERA</h1>
+
+<p>
+    <a asp-action="Create">Crear nueva pelicula</a>
+</p>
+
+
+<div class="d-flex flex-wrap">
+    @foreach (var item in Model)
+    {
+        <div class="card" style="width: 18rem;">
+            <img src="~/Pelicula/@item.Foto"
+                 class="card-img-top"
+                 height="240"
+                 asp-append-version="true" />
+            <div class="card-body">
+                <h5 class="card-title">@Html.DisplayFor(modelItem => item.Titulo)</h5>
+                <p class="card-text">Genero: @Html.DisplayFor(modelItem => item.Genero.Descripcion)</p>
+                <a asp-action="Edit" asp-route-id="@item.Id" button type="button" class="btn btn-primary">Editar</a>
+                <a asp-action="Delete" asp-route-id="@item.Id" button type="button" class="btn btn-danger">Borrar</a>
+                <a asp-action="Details" asp-route-id="@item.Id" button type="button" class="btn btn-success">Detalles</a>
+            </div>
+        </div>
+    }
+</div>

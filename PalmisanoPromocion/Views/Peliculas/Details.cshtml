@@ -1,0 +1,91 @@
+﻿@model PalmisanoPromocion.Models.Pelicula
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h1>Detalles Peliculas</h1>
+
+<div>
+    
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Titulo)
+        </dt>
+
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Titulo)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.FechaEstreno)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.FechaEstreno)
+        </dd>
+
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Resumen)
+        </dt>
+
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Resumen)
+        </dd>
+
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Genero)
+        </dt>
+
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Genero.Descripcion)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Trailer)
+        </dt>
+
+        <dd class="col-sm-10">
+
+            <iframe id="testiframe" class="iframe" src=@Html.DisplayFor(model => model.Trailer)></iframe>
+        </dd>
+
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Actores)
+        </dt>
+
+        <dd class="col-sm-10">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>
+                            @Html.DisplayName("Nombre")
+                        </th>
+                        <th>
+                            @Html.DisplayName("Foto")
+                        </th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model.Actores)
+                    {
+                        <tr>
+
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Persona.Nombre)
+                            </td>
+                            <td>
+                                <img src="~/Persona/@item.Persona.Foto"
+                                     height="85" with="45"
+                                     asp-append-version="true" />
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model.Id">Editar</a> |
+    <a asp-action="Index">Volver a la lista</a>
+</div>

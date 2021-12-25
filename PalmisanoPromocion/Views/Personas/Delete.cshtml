@@ -1,0 +1,46 @@
+﻿@model PalmisanoPromocion.Models.Persona
+
+@{
+    ViewData["Title"] = "Delete";
+}
+
+<h1>Borrar Persona</h1>
+
+<h3>Esta seguro que desea borrar la persona?</h3>
+<div>
+    <h4>Persona</h4>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Nombre)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Nombre)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.FechaNacimiento)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.FechaNacimiento)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Biografia)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Biografia)
+        </dd>
+        <dd>
+            <img src="~/Persona/@Model.Foto"
+                 
+                 height="85" with="45"
+                 asp-append-version="true" />
+        </dd>
+
+    </dl>
+    
+    <form asp-action="Delete">
+        <input type="hidden" asp-for="Id" />
+        <input type="submit" value="Borrar" class="btn btn-danger" /> |
+        <a asp-action="Index">Volver a la lista</a>
+    </form>
+</div>

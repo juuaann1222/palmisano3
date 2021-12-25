@@ -1,0 +1,60 @@
+﻿@model IEnumerable<PalmisanoPromocion.Models.Persona>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Indice Persona</h1>
+
+<p>
+    <a asp-action="Create">Crear nuevo actor</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Nombre)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.FechaNacimiento)
+            </th>
+            
+            <th>
+                @Html.DisplayNameFor(model => model.Foto)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+        <tr>
+
+            <td>
+                @Html.DisplayFor(modelItem => item.Nombre)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.FechaNacimiento)
+            </td>
+
+            <td>
+                <img src="~/Persona/@item.Foto"
+                     height="85" with="45"
+                     asp-append-version="true" />
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.Id" button type="button" class="btn btn-primary">Editar</a>
+                <a asp-action="Delete" asp-route-id="@item.Id" button type="button" class="btn btn-danger">Borrar</a>
+
+                <a asp-action="Details" asp-route-id="@item.Id" button type="button" class="btn btn-success">Detalles</a>
+            </td>
+
+        </tr>
+        }
+    </tbody>
+</table>
+
+@{ 
+    PalmisanoPromocion.ViewModel.PaginadorViewModel pagina = ViewBag.Paginador; 
+}
+<partial name="_Paginador" for="@pagina" />
